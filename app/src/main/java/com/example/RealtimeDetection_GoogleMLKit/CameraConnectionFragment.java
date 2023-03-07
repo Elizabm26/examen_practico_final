@@ -42,7 +42,8 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
-import com.example.facedetection2023_it.R;
+
+import com.example.facultad_UTEQ.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;

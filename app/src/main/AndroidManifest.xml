@@ -12,9 +12,9 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="TUOR_UTEQ"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FaceDetection2023_IT"
+        android:theme="@style/Theme.Facultad_UTEQ"
         tools:targetApi="31">
 
         <activity

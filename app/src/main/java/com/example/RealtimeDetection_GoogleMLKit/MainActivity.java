@@ -25,8 +25,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.example.facedetection2023_it.R;
-import com.example.facedetection2023_it.ml.Model;
+import com.example.facultad_UTEQ.R;
+import com.example.facultad_UTEQ.ml.Facultad;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.vision.common.InputImage;
@@ -180,13 +180,13 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     public void PersonalizedModel(View v) {
         try {
-            Model model = Model.newInstance(getApplicationContext());
+            Facultad model = Facultad.newInstance(getApplicationContext());
 
             // Creates inputs for reference.
             TensorImage image = TensorImage.fromBitmap(mSelectedImage);
 
             // Runs model inference and gets result.
-            Model.Outputs outputs = model.process(image);
+            Facultad.Outputs outputs = model.process(image);
             List<Category> probability = outputs.getProbabilityAsCategoryList();
 
 
@@ -279,17 +279,22 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         rgbFrameBitmap.setPixels(rgbBytes, 0, previewWidth, 0, 0, previewWidth, previewHeight);
 
         try {
-            Model model = Model.newInstance(getApplicationContext());
+            Facultad model = Facultad.newInstance(getApplicationContext());
             TensorImage image = TensorImage.fromBitmap(rgbFrameBitmap);
 
-            Model.Outputs outputs = model.process(image);
+            Facultad.Outputs outputs = model.process(image);
             List<Category> probability = outputs.getProbabilityAsCategoryList();
 
             Collections.sort(probability, new CategoryComparator());
 
             String res="";
-            for (int i = 0; i < probability.size(); i++) {
-                res = res + probability.get(i).getLabel() +  " " +  probability.get(i).getScore()*100 + " % \n";
+           // for (int i = 0; i < probability.size(); i++) {
+             //   res = res + probability.get(i).getLabel() +  " " +  probability.get(i).getScore()*100 + " % \n";
+            //}
+            if (probability.size()< 50){
+                res="no encontrada";
+            }else if (probability.size()>=50){
+                res=probability.get(0).getLabel();
             }
             txtResults.setText(res);
             model.close();
