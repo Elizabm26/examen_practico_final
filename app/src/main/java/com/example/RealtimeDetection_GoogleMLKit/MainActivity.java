@@ -288,14 +288,12 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             Collections.sort(probability, new CategoryComparator());
 
             String res="";
-           // for (int i = 0; i < probability.size(); i++) {
-             //   res = res + probability.get(i).getLabel() +  " " +  probability.get(i).getScore()*100 + " % \n";
-            //}
-            if (probability.size()< 50){
-                res="no encontrada";
-            }else if (probability.size()>=50){
+            if (probability.size()>0&&probability.get(0).getScore()>=0.50){
                 res=probability.get(0).getLabel();
+            }else{
+                res="No se reconoce el edificio";
             }
+        
             txtResults.setText(res);
             model.close();
         } catch (IOException e) {
