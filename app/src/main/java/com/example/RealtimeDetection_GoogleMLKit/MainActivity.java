@@ -26,7 +26,7 @@ import android.widget.TextView;
 
 
 import com.example.facultad_UTEQ.R;
-import com.example.facultad_UTEQ.ml.Facultades;
+import com.example.facultad_UTEQ.ml.UteqFacu;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.vision.common.InputImage;
@@ -180,13 +180,13 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     public void PersonalizedModel(View v) {
         try {
-            Facultades model = Facultades.newInstance(getApplicationContext());
+            UteqFacu model = UteqFacu.newInstance(getApplicationContext());
 
             // Creates inputs for reference.
             TensorImage image = TensorImage.fromBitmap(mSelectedImage);
 
             // Runs model inference and gets result.
-            Facultades.Outputs outputs = model.process(image);
+            UteqFacu.Outputs outputs = model.process(image);
             List<Category> probability = outputs.getProbabilityAsCategoryList();
 
 
@@ -279,10 +279,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         rgbFrameBitmap.setPixels(rgbBytes, 0, previewWidth, 0, 0, previewWidth, previewHeight);
 
         try {
-            Facultades model = Facultades.newInstance(getApplicationContext());
+            UteqFacu model = UteqFacu.newInstance(getApplicationContext());
             TensorImage image = TensorImage.fromBitmap(rgbFrameBitmap);
 
-            Facultades.Outputs outputs = model.process(image);
+            UteqFacu.Outputs outputs = model.process(image);
             List<Category> probability = outputs.getProbabilityAsCategoryList();
 
             Collections.sort(probability, new CategoryComparator());
